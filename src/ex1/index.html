@@ -9,7 +9,7 @@
     <h1 class="titleH1">Todo list </h1>
     <div class="taskInputAndTaskAddContainer">
         <input type="text" id="todoTaskInput" placeholder="Add your new todo">
-        <button type="submit" class="addTaskButton" onclick=onAddTaskButton()>+</button>
+        <button type="submit" class="addTaskButton" id="addTaskButtonId" onclick=onAddTaskButton()>+</button>
     </div>
     <div class="todoTasksListContainer">
         <ul class="taskList">
@@ -17,7 +17,7 @@
     </div>
     <div class="pendingAndClearButtonContainer">
         <p class="pending" id="pendingParagraph">You have 0 pending tasks</p>
-        <button type="submit" class="clearButton" onClick=onClearButton()>Clear All</button>
+        <button type="submit" class="clearButton" id="clearButtonId" onClick=onClearButton() disabled>Clear All</button>
     </div>
 </div>
 
