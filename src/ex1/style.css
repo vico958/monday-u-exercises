@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+title {
+    font-weight: bold;
+}
+
+body{
+    background-image: linear-gradient(blue, white);
+    background-size : 100%;
+    height: 100%;
+}
+html{
+    height: 100%;
+}
+
+.todoAppContainer{
+    width: 100%;
+    margin: 120px auto;
+    max-width: 330px;
+    background-color: #D9B9F6;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.titleH1{
+    font-size: 30px;
+    font-weight: 600;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.pending, .clearButton{
+    display: inline-block;
+    margin: 2px;
+}
+
+.pending{
+    padding: 1;
+}
+
+.pendingAndClearButtonContainer{
+    padding: 1px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+button{
+    background-color:purple;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 1.5s, 
+    color 1s;
+    border-radius: 6px;
+    font-size: 20px;
+}
+
+button:hover{
+    background-color:blueviolet;
+}
+
+.taskList{
+    width: 300px;
+    height: 200px;
+    padding: 0px 0px;
+    overflow-y: scroll;
+}
+
+.taskImage{
+    width: 30px;
+    display: inline-block;
+    margin-left: auto;
+}
+
+.task{
+    list-style: none;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    border-bottom: 1px black solid;
+    transition: background-color 1.5s, 
+    color 1s;
+}
+
+.task:hover{
+    background-color: blueviolet;
+}
+
+#todoTaskInput, #pendingParagraph{
+    height: 30px;
+    font-size: 16px;
+}

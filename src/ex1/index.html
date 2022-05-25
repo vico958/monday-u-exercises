@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Exercise 1</title>
+    <title>Todo App</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<h1>Todo list</h1>
+<div class="todoAppContainer">
+    <h1 class="titleH1">Todo list </h1>
+    <div class="taskInputAndTaskAddContainer">
+        <input type="text" id="todoTaskInput" placeholder="Add your new todo">
+        <button type="submit" class="addTaskButton" onclick=onAddTaskButton()>+</button>
+    </div>
+    <div class="todoTasksListContainer">
+        <ul class="taskList">
+        </ul>
+    </div>
+    <div class="pendingAndClearButtonContainer">
+        <p class="pending" id="pendingParagraph">You have 0 pending tasks</p>
+        <button type="submit" class="clearButton" onClick=onClearButton()>Clear All</button>
+    </div>
+</div>
 
 
 </body>
