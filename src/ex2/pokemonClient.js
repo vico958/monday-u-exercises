@@ -24,8 +24,8 @@ class PokemonClient{
 
 getPokemonTypes(pokemon){
     let stringOfPokemonType = "";
-    pokemon.types.forEach(types => {
-        stringOfPokemonType += `${types.type.name}/`;
+    pokemon.types.forEach(value => {
+        stringOfPokemonType += `${value.type.name}/`;
     })
     stringOfPokemonType = stringOfPokemonType.slice(0, -1);
     return stringOfPokemonType;
