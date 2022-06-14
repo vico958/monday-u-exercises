@@ -3,7 +3,7 @@ import { writeFileSync, readFileSync, existsSync } from "fs";
 const dataFile = "../database/DB.json";
 
 export class todosDatabase {
-
+ 
   getData = () => {
     try {
       const isDataExists = existsSync((dataFile));

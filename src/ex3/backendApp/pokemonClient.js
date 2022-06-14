@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 export class PokemonClient{
     constructor(){
         this.apiUrl = "https://pokeapi.co/api/v2/pokemon/";
-    }
+    } 
     async createListPokemonToCatchMessage(pokemonsIdList){
         const pokemonsToReturn = [];
         const allFetching = [];

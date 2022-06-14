@@ -1,4 +1,4 @@
-import { ItemManagerValidator } from "./itemMangerValidator.js";
+import { ItemManagerValidator } from "./itemMangerValidator.js"; 
 import { PokemonClient } from "./pokemonClient.js";
 import { todosDatabase } from "../database/database.js";
 

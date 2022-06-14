@@ -1,6 +1,6 @@
 export class ItemManagerValidator {
 
-    constructor() {
+    constructor() { 
         this.isNumberRegex = /^[0-9]+$/;
         this.isListRegex = /^[0-9, ]+$/;
     }

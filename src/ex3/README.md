@@ -5,7 +5,7 @@ Time for task #3!<br>
 ## In this section you will practice
 
 **Node.js** - Build your first node.js cli app <br> 
-**Npm** - Work with external libraries <br>
+**Npm** - Work with external libraries <br> 
 **Files** - Read and write from the file system <br>
 
 ## What you are going to build
