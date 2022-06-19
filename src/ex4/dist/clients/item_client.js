@@ -16,14 +16,16 @@ class ItemClient{
             });
             return await response.data;
         } catch(error){
-            alert(error.message);
+            const response = error.response.data;
+            alert(`${response.error} and code is ${response.status}`);
         }
     }
     async deleteAllItems(){
         try{
             await axios.delete(this.backendApi);
         } catch(error){
-            alert(error.message);
+            const response = error.response.data;
+            alert(`${response.error} and code is ${response.status}`);
         }
     }
     async deleteItem(value){
@@ -32,7 +34,8 @@ class ItemClient{
             const index = itemArr.indexOf(value);
             await axios.delete(`${this.backendApi}/${index}`, {data:{'id':index}});
         } catch(error){
-            alert(error.message);
+            const response = error.response.data;
+            alert(`${response.error} and code is ${response.status}`);
         }
     }
 }

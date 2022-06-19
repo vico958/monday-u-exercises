@@ -2,7 +2,7 @@
 import { ItemManagerValidator } from "./itemMangerValidator.js"; 
 import PokemonClient from "../clients/pokemon_client.js";
 import todosDatabase from "../../database/database.js";
-
+import createError from "../../errorFile.js";
 export default class ItemManager {
     constructor(){
         this.pokemonClient = new PokemonClient();
@@ -11,7 +11,7 @@ export default class ItemManager {
     }
     async addItem(item){
         if(this.validator.isInputBlank(item)) {
-            throw Error("Item need to have something inside him!!!");
+            throw Error(createError("Item need to have something inside him!!!", 400));
         }
         try {
             let task = item;
@@ -26,7 +26,7 @@ export default class ItemManager {
             }
             this.database.addData(task);
         } catch(error) {
-            throw Error(error.message);
+            throw (error);
         }
     }
 
