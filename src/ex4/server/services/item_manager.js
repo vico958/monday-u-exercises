@@ -11,7 +11,7 @@ export default class ItemManager {
     }
     async addItem(item){
         if(this.validator.isInputBlank(item)) {
-            throw Error(createError("Item need to have something inside him!!!", 400));
+            throw createError("Item need to have something inside him!!!", 400);
         }
         try {
             let task = item;

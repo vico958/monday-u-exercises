@@ -20,19 +20,19 @@ export default class todosDatabase {
   addData = (dataToAdd) => {
     const data = this.getData();
     if(data.includes(dataToAdd)) {
-      throw createError("Already having this task", 400);
+      throw createError("Already having this task", 409);
     }
     try {
       data.push(dataToAdd);
       writeFileSync(dataFile, JSON.stringify(data));
     } catch (error) {
-      throw createError("Failed to add data", 400);
+      throw createError("Failed to add data", 500);
     }
   };
   deleteData = (index) => {
     const data = this.getData();
     if(this.isInRangeOfList(index, data.length)){
-      throw createError("Index is not valid", 400);
+      throw createError("Index is not valid", 416);
     }
     try {
       data.splice(index, 1);
