@@ -105,13 +105,50 @@ body {
 }
 
 .list-item-delete-button {
-  margin-left: auto;
   padding: 8px;
   cursor: pointer;
   border-radius: 8px;
+  margin: 0px 0px 0px 0px;
 }
 
-.list-item-delete-button:hover {
-  background-color: #f0f0f5;
+.list-item-edit-button{
+  margin-left: auto;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.list-item-edit-button:hover{
+  background-color: rgba(107, 167, 105, 0.658);
   transition: background-color 0.2s ease-in-out;
+}
+.list-item-delete-button:hover{
+  background-color: #E3CFEB;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#delete-all-button{
+  color: white;
+  background-color: #6c6cff;
+  border-style: solid;
+  border-color: transparent;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  margin-left: 42%;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.list-item-checkbox-status{
+  accent-color: blueviolet;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.list-item-text{
+  padding: 8px;
 }

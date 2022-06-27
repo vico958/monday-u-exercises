@@ -1,19 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const itemManager = require('../services/item_manager');
+const { getAllTodoList, createTodo, deleteAllTodo, deleteTodo, updateTodoStatus, updateTodoToNewTodo } = require('./apiFunctions');
+const itemRouter = express.Router();
+itemRouter.post("/make-task", createTodo);
+itemRouter.get("/get-all-items", getAllTodoList);
+itemRouter.delete("/delete-all-tasks", deleteAllTodo);
+itemRouter.delete("/delete-task", deleteTodo);
+itemRouter.post('/update-task-status', updateTodoStatus);
+itemRouter.post('/update-task-to-new-task', updateTodoToNewTodo);
 
-router.get('/items', (_, res) => {
-    res.send(itemManager.getItems())
-})
 
-router.post('/item', async (req, res) => {
-    await itemManager.handleItem(req.body.item)
-    res.end()
-})
-
-router.delete('/item', (req, res) => {
-    itemManager.deleteItem(req.body.item)
-    res.end()
-})
-
-module.exports = router
+module.exports = itemRouter;
