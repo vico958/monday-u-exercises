@@ -22,6 +22,7 @@ class Main {
         const taskIsCompletedInitValue = false;
         await this.itemClient.addItem(taskInput.value, taskIsCompletedInitValue);
         await this.renderItems();
+        taskInput.value = "";
     }
     
     deleteItem = async itemId => {
