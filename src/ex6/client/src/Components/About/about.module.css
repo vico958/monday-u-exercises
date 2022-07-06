@@ -1,0 +1,11 @@
+.profile_photo{
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.text_about_page{
+    color: purple;
+    font-size: 30px;
+}
