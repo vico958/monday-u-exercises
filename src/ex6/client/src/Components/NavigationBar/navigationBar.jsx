@@ -14,7 +14,7 @@ export const NavigationBar = () => {
       </a>
 
       <a href = "/statistics">
-      statistics
+      Statistics
       </a>
     </Menu>
   );
