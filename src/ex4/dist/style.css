@@ -115,3 +115,20 @@ body {
   background-color: #f0f0f5;
   transition: background-color 0.2s ease-in-out;
 }
+
+#delete-all-button{
+  color: white;
+  background-color: #6c6cff;
+  border-style: solid;
+  border-color: transparent;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  margin-left: 42%;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 3px;
+}
