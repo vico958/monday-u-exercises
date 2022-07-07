@@ -4,7 +4,7 @@ import { addItem } from '../../apiRequestsLib';
 import styles from './addItem.module.css';
 import PropTypes from "prop-types";
 
-export const AddItem = ({callBackFunction}) => {
+export const AddItem = ({callBackFunction, errorCallBackFunction}) => {
     const [isUploadItem, setIsUploadItem] = useState(false);
     const [task, setTask] = useState("");
     const [inputValue, setInputValue] = useState("");
@@ -36,7 +36,7 @@ export const AddItem = ({callBackFunction}) => {
         try{
             const addItemWithDefaultIsCompeleteFalse = false;
             setInputValue("");
-            await addItem(task, addItemWithDefaultIsCompeleteFalse);
+            await addItem(task, addItemWithDefaultIsCompeleteFalse, errorCallBackFunction);
             setIsUploadItem(true);
         } catch(error){
             throw error;
@@ -53,5 +53,6 @@ export const AddItem = ({callBackFunction}) => {
     }
 
     AddItem.propTypes = {
-        callBackFunction: PropTypes.func
+        callBackFunction: PropTypes.func,
+        errorCallBackFunction: PropTypes.func
       };

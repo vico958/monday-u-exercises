@@ -5,23 +5,23 @@ import styles from './todoItem.module.css';
 import { deleteItem, updateItemStatus, editItem } from '../../apiRequestsLib';
 import PropTypes from "prop-types";
 
-export const TodoItem = ({callBackFunction, todo}) => {
+export const TodoItem = ({callBackFunction, todo, errorCallBackFunction}) => {
     const {id , isCompleted, task} = todo;
     
     const onClickDeleteButton = async () => {
-        await deleteItem(id);
+        await deleteItem(id, errorCallBackFunction);
         callBackFunction();
     }
 
     const onChangeCheckBox = async () => {
-        await updateItemStatus(id, !isCompleted);
+        await updateItemStatus(id, !isCompleted, errorCallBackFunction);
         callBackFunction();
     }
 
     const onClickEditItem = async () => {
         const newTask = window.prompt("Enter your new task");
         if(newTask){
-            await editItem(id, newTask);
+            await editItem(id, newTask, errorCallBackFunction);
             callBackFunction();
         }
     }
@@ -45,5 +45,6 @@ TodoItem.propTypes = {
         id : PropTypes.number,
         isCompleted : PropTypes.bool,
         task : PropTypes.string
-    })
+    }),
+    errorCallBackFunction: PropTypes.func
   };

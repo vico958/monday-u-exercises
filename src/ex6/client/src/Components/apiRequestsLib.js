@@ -1,73 +1,70 @@
+import axios from "axios";
+
 const apiUrl = "http://localhost:3030"
-export async function getItems(){
+export async function getItems(errorCallBackFunction){
     try{
-        const fetchApi = await fetch(`${apiUrl}/get-all-items`);
-        const jsonApi = await fetchApi.json();
-        return jsonApi;
+        const response = await axios({
+            method: 'get',
+            url: `${apiUrl}/get-all-items`
+        });
+        return await response.data;
     } catch(error){
-        throw (error);
+        errorCallBackFunction(error);
     }
 }
-export async function addItem(todo, todoIsCompletedInitValue){
-    const data = JSON.stringify({'todo':todo, 'isCompleted': todoIsCompletedInitValue});
+export async function addItem(todo, todoIsCompletedInitValue, errorCallBackFunction){
     try{
-        const url = `${apiUrl}/make-task`;
-        await fetch(url, {
+        await axios({
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body:data
+            url: `${apiUrl}/make-task`,
+            data:{'todo':todo, 'isCompleted': todoIsCompletedInitValue}
         });
     } catch(error){
-        throw (error);
+        console.log(error);
+        errorCallBackFunction(error);
     }
 }
-export async function deleteItem(taskId){
+export async function deleteItem(taskId, errorCallBackFunction){
     try{
         const newUrl = `${apiUrl}/delete-task`;
-        const data = JSON.stringify({'taskId':taskId});
-        await fetch(newUrl, {
+        await axios({
             method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body:data
+            url:newUrl,
+            data:{'taskId':taskId}
         });
     } catch(error){
-        throw (error);
+        errorCallBackFunction(error);
     }
 }
-export async function editItem(taskId, newTask){
+export async function editItem(taskId, newTask, errorCallBackFunction){
     try{
-        const url = `${apiUrl}/update-task-to-new-task`;
-        const data = JSON.stringify({'taskId':taskId, 'newTask':newTask});
-        await fetch(url, {
+        await axios({
             method:'post',
-            headers: {'Content-Type': 'application/json'},
-            body:data
+            url:`${apiUrl}/update-task-to-new-task`,
+            data:{'taskId':taskId, 'newTask':newTask}
         });
     } catch(error){
-        throw (error);
+        errorCallBackFunction(error);
     }
 }
-export async function updateItemStatus(taskId, newStatus){
+export async function updateItemStatus(taskId, newStatus, errorCallBackFunction){
     try{
-        const url = `${apiUrl}/update-task-status`;
-        const data = JSON.stringify({'taskId':taskId, 'newStatus':newStatus});
-        await fetch(url, {
+        await axios({
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body:data
+            url: `${apiUrl}/update-task-status`,
+            data:{'taskId':taskId, 'newStatus':newStatus}
         });
     } catch(error){
-        throw (error);
+        errorCallBackFunction(error);
     }
 }
-export async function deleteAllItems(){
+export async function deleteAllItems(errorCallBackFunction){
     try{
-        const url = `${apiUrl}/delete-all-tasks`;
-        await fetch(url, {
+        await axios({
         method: 'delete',
-        headers: {'Content-Type': 'application/json'},
+        url: `${apiUrl}/delete-all-tasks`
         });
     } catch(error){
-        throw (error);
+        errorCallBackFunction(error);
     }
 }

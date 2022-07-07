@@ -21,14 +21,19 @@ export const TodoContainer = () => {
         setTodoList(await getItems());
     }
 
+    const alertingWhenError = useCallback((error) => {
+        const response = error.response.data;
+        alert(`${response.error} and code is ${response.status}`);
+    });
+
     const taskList = useMemo(() => {
-        return todoList.map((todo) => (<TodoItem key = {todo.id} callBackFunction = {setingTodoList}
+        return todoList.map((todo) => (<TodoItem key = {todo.id} callBackFunction = {setingTodoList} errorCallBackFunction = {alertingWhenError}
             todo = {todo}/>))
       }, [todoList]);
 
     return(
     <section>
-            <AddItem callBackFunction = {setingTodoList}/>
+            <AddItem callBackFunction = {setingTodoList} errorCallBackFunction = {alertingWhenError}/>
         <section className = {styles.list}>
         {taskList}
         </section>
