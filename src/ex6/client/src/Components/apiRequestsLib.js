@@ -20,7 +20,6 @@ export async function addItem(todo, todoIsCompletedInitValue, errorCallBackFunct
             data:{'todo':todo, 'isCompleted': todoIsCompletedInitValue}
         });
     } catch(error){
-        console.log(error);
         errorCallBackFunction(error);
     }
 }

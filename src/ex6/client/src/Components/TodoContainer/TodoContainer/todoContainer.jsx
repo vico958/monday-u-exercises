@@ -27,19 +27,19 @@ export const TodoContainer = () => {
     });
 
     const taskList = useMemo(() => {
-        return todoList.map((todo) => (<TodoItem key = {todo.id} callBackFunction = {setingTodoList} errorCallBackFunction = {alertingWhenError}
-            todo = {todo}/>))
-      }, [todoList]);
+        return todoList.map((todo) => (<TodoItem key={todo.id} callBackFunction={setingTodoList} errorCallBackFunction={alertingWhenError}
+            todo={todo} />))
+    }, [todoList]);
 
-    return(
-    <section>
-            <AddItem callBackFunction = {setingTodoList} errorCallBackFunction = {alertingWhenError}/>
-        <section className = {styles.list}>
-        {taskList}
+    return (
+        <section>
+            <AddItem callBackFunction={setingTodoList} errorCallBackFunction={alertingWhenError} />
+            <section className={styles.list}>
+                {taskList}
+            </section>
+            {todoList.length >= 1 &&
+                <button className={styles.delete_all_items_button} onClick={onClickdeleteAllItems}>
+                    Delete All</button>}
         </section>
-        {todoList.length >= 1 ?
-        <button className ={styles.delete_all_items_button} onClick={onClickdeleteAllItems}>
-        Delete All</button> : <></>}
-   </section>
-   );
+    );
 }
