@@ -1,72 +1,56 @@
+const ItemManagerValidator = require('./itemMangerValidator');
 const PokemonClient = require('../clients/pokemon_client');
-const { Item } = require('../db/models');
-
+const todosDatabase = require('../../database/database');
+const createHttpError = require('../../errorFile');
 class ItemManager {
-  constructor() {
-    this.pokemonClient = new PokemonClient();
-  }
-
-  getItems = async () => {
-    const items = await Item.findAll({
-      raw: true,
-    });
-    return items.map(item => {
-      return {
-        id: item.id,
-        name: item.itemName,
-        status: item.status
-      };
-    });
-  };
-
-  handleItem = async item => {
-    if (this._isNumber(item)) { return await this.fetchAndAddPokemon(item); }
-    if (this._isList(item)) { return await this.fetchAndAddManyPokemon(item); }
-
-    await this.addItem(item);
-  };
-
-  updateItem = async item => {
-    await Item.update({ status: item.status }, { where: { id: item.id } });
-  };
-
-  addItem = async item => {
-    await Item.create({ itemName: item });
-  };
-
-  addPokemonItem = async pokemon => {
-    await this.addItem(`Catch ${pokemon.name}`);
-  };
-
-  fetchAndAddPokemon = async pokemonId => {
-    try {
-      const pokemon = await this.pokemonClient.getPokemon(pokemonId);
-      await this.addPokemonItem(pokemon);
-    } catch (error) {
-      await this.addItem(`Pokemon with ID ${pokemonId} was not found`);
+    constructor(){
+        this.pokemonClient = new PokemonClient();
+        this.validator = new ItemManagerValidator();
+        this.database = new todosDatabase();
     }
-  };
-
-  fetchAndAddManyPokemon = async inputValue => {
-    try {
-      const pokemons = await this.pokemonClient.getManyPokemon(inputValue.replace("/ /g", "").split(","));
-      pokemons.forEach(this.addPokemonItem);
-    } catch (error) {
-      console.error(error);
-      await this.addItem(`Failed to fetch pokemon with this input: ${inputValue}`);
+    async addItem(item, isCompleted){
+        if(this.validator.isInputBlank(item)) {
+            throw createHttpError("Item need to have something inside him!!!", 400);
+        }
+        try {
+            let task = item;
+            if (this.validator.isNumber(item)) {
+                task = await this.pokemonClient.createPokemonToCatchMessage(item);
+            } else { 
+                const listToCatchAndIsValid = this.validator.isList(item);
+                if (listToCatchAndIsValid !== false ) {
+                    await this._addItemAsList(listToCatchAndIsValid, isCompleted);
+                    return;
+                }
+            }
+            await this.database.addData(task, isCompleted);
+        } catch(error) {
+            throw (error);
+        }
     }
-  };
-
-  deleteItem = async item => {
-    await Item.destroy({
-      where: {
-        id: item.id
-      }
-    });
-  };
-
-  _isNumber = value => !isNaN(Number(value));
-  _isList = value => value.split(",").every(this._isNumber);
+    async _addItemAsList(listToCatch, isCompleted) {
+        const taskList = await this.pokemonClient.createListPokemonToCatchMessage(listToCatch);
+        if (taskList){
+            await Promise.all(taskList.map(async (task) => {
+                await this.database.addData(task, isCompleted);
+            }));
+        }
+    }
+    async deleteItem(taskId){
+        await this.database.deleteData(taskId)
+    }
+    async getList(){
+        return await this.database.getTodoListData();
+    }
+    async deleteAllItems(){
+        await this.database.deleteAllData();
+    }
+    async updateItemStatus(taskId, newStatus){
+        await this.database.updateDataStatus(taskId, newStatus);
+    }
+    async updateTodoToNewTodo(taskId, newTask){
+        await this.database.updateTodoToNewTodo(taskId, newTask);
+    }
 }
 
-module.exports = new ItemManager();
+module.exports = new ItemManager()
