@@ -1,35 +1,35 @@
-.button_submit{
-  height: 40px;
-  font-size: 16px;
-  justify-content: center;
-  cursor: pointer;
-  margin-left: auto;
-  border-radius: 4px;
-  background-color: blueviolet;
-  border: none;
-  color: white;
-  display: inline-block;
-}
+  .button_submit{
+    height: 40px;
+    font-size: 16px;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: auto;
+    border-radius: 4px;
+    background-color: blueviolet;
+    border: none;
+    color: white;
+    display: inline-block;
+  }
 
-.button_submit:hover {
-  background-color: #3c3cff;
-  transition: background-color 0.2s ease-in-out;
-}
+  .button_submit:hover {
+    background-color: #3c3cff;
+    transition: background-color 0.2s ease-in-out;
+  }
 
-.user_input{
-  width: 88%;
-  height: 30px;
-  font-size: 16px;
-  padding-left: 8px;
-  margin: 2px;
-  display: inline-block;
-  background-color: rgba(138, 144, 224, 0.76);
-  border-color: purple;
-  cursor: pointer;
-  border-radius: 4px;
-}
+  .user_input{
+    width: 88%;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 8px;
+    margin: 2px;
+    display: inline-block;
+    background-color: rgba(138, 144, 224, 0.76);
+    border-color: purple;
+    cursor: pointer;
+    border-radius: 4px;
+  }
 
-.add_item_div{
-  margin: 2px;
-  padding: 8px;
-}
+  .add_item_div{
+    margin: 2px;
+    padding: 8px;
+  }
