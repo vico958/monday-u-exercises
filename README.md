@@ -19,6 +19,10 @@ This is going to be so much fun! Here are a few general details:
 
 **Exercise 6** - [React](https://github.com/monday-u-com/monday-u-exercises/tree/master/src/ex6)
 
+**Exercise 7** - [Redux](https://github.com/monday-u-com/monday-u-exercises/tree/master/src/ex7)
+
+**Exercise 8** - [Tests](https://github.com/monday-u-com/monday-u-exercises/tree/master/src/ex8)
+
 # Submitting your tasks
 Create a pull request in your forked repository and send to your mentor when it's ready.
 
