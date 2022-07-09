@@ -38,10 +38,10 @@
                 : <></>}
 
                 {todoList.length >= 1 && countFinishedTask === 0 ?
-                <p className = {styles.text_statistics_page}>You didnt finish any task until now.
-                <p> What are you waiting for? stop coding and start working!
-                </p>
-                </p>
+                <div>
+                    <p className = {styles.text_statistics_page}>You didnt finish any task until now.</p>
+                    <p className = {styles.text_statistics_page}>What are you waiting for? stop coding and start working!</p>
+                </div>
                 : <></>}
         </section>
     );
