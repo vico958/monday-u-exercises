@@ -1,24 +1,22 @@
-  .list {
-      list-style-type: none;
-      padding: 0px 30px;
-      height: 310px;
-      overflow-y: scroll;
-  }
-
-  .delete_all_items_button{
-    height: 40px;
-    font-size: 16px;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: auto;
-    border-radius: 4px;
-    background-color: blueviolet;
-    border: none;
-    color: white;
-    display: inline-block;
-  }
-
-  .delete_all_items_button:hover {
-    background-color: #3c3cff;
-    transition: background-color 0.2s ease-in-out;
-  }
+.list {
+    list-style-type: none;
+    padding: 0px 30px;
+    height: 310px;
+    overflow-y: scroll;
+}
+.delete_all_items_button{
+  height: 40px;
+  font-size: 16px;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: auto;
+  border-radius: 4px;
+  background-color: blueviolet;
+  border: none;
+  color: white;
+  display: inline-block;
+}
+.delete_all_items_button:hover {
+  background-color: #3c3cff;
+  transition: background-color 0.2s ease-in-out;
+}
