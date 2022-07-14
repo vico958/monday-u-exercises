@@ -1,22 +1,22 @@
-import "./App.css";
-import { Box, Container, Grid } from "@mui/material";
-import React from "react";
-import { NavigationOnTheWeb } from "./Components/NavigationBar/navigationOnTheWeb";
-import { NavigationBar } from "./Components/NavigationBar/navigationBar";
+  import "./App.css";
+  import { Box, Container, Grid } from "@mui/material";
+  import React from "react";
+  import { NavigationOnTheWeb } from "./Components/NavigationBar/navigationOnTheWeb";
+  import { NavigationBar } from "./Components/NavigationBar/navigationBar";
 
-function App() {
-  return (
-    <Container>
-      <Grid container>
-        <Grid xs item>
-          <Box textAlign={"center"}>
-            <NavigationBar />
-            <NavigationOnTheWeb />
-          </Box>
+  function App() {
+    return (
+      <Container>
+        <Grid container>
+          <Grid xs item>
+            <Box textAlign={"center"}>
+              <NavigationBar />
+              <NavigationOnTheWeb />
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
-  );
-}
+      </Container>
+    );
+  }
 
-export default App;
+  export default App;

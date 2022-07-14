@@ -1,38 +1,38 @@
-.list_item {
-    display: flex;
-    margin: 8px;
-    border: 1px solid;
-    justify-content: space-between;
+  .list_item {
+      display: flex;
+      margin: 8px;
+      border: 1px solid;
+      justify-content: space-between;
+      padding: 8px;
+      border-radius: 4px;
+  }
+  .list_item_delete_button {
     padding: 8px;
-    border-radius: 4px;
-}
-.list_item_delete_button {
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 8px;
-  margin: 0px 0px 0px 0px;
-}
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0px 0px 0px 0px;
+  }
 
-.list_item_edit_button{
-  margin-left: auto;
-  cursor: pointer;
-  border-radius: 8px;
-  border-radius: 8px;
-}
-.list_item_delete_button:hover, .list_item_edit_button:hover{
-  background-color: #E3CFEB;
-  transition: background-color 0.2s ease-in-out;
-}
-.list_item_checkbox_status{
-  accent-color: blueviolet;
-  height: 15px;
-  width: 15px;
-  cursor: pointer;
-}
-.item_text_as_div{
-  cursor: pointer;
-}
-.item_text_as_div:hover{
-  color: blueviolet;
-  transition: color 0.2s ease-in-out;
-}
+  .list_item_edit_button{
+    margin-left: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    border-radius: 8px;
+  }
+  .list_item_delete_button:hover, .list_item_edit_button:hover{
+    background-color: #E3CFEB;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .list_item_checkbox_status{
+    accent-color: blueviolet;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+  }
+  .item_text_as_div{
+    cursor: pointer;
+  }
+  .item_text_as_div:hover{
+    color: blueviolet;
+    transition: color 0.2s ease-in-out;
+  }
