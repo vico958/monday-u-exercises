@@ -11,9 +11,9 @@ export const todoListSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       if(Array.isArray(action.payload)){
-        state._copyTodoList = [...state._copyTodoList, ...action.payload]
+        state._copyTodoList = [...state._copyTodoList, ...action.payload];
       } else{
-        state._copyTodoList = [...state._copyTodoList, action.payload]
+        state._copyTodoList = [...state._copyTodoList, action.payload];
       }
       state.todoList = state._copyTodoList;
     },
@@ -73,8 +73,10 @@ export const todoListSlice = createSlice({
     },
     filteredTodoListBySearch:(state, action) => {
       const newList = [];
+      const searchInputAsLowerCase = action.payload.toLowerCase();
       for (let i = 0; i < state._copyTodoList.length; i++) {
-        if(state._copyTodoList[i].task.includes(action.payload)){
+        const taskAsLowerCase = state._copyTodoList[i].task.toLowerCase();
+        if(taskAsLowerCase.includes(searchInputAsLowerCase)){
           newList.push(state._copyTodoList[i]);
         }
       }

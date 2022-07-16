@@ -16,13 +16,13 @@ export const Features = () => {
     await deleteAllItems();
     dispatch(removeAllTodos());
     dispatch(updateLastRemovedTodoToNull());
-    setInputSearchValue("");
+    resetSearchInput();
 }, []);
 
   const onClickRestoreLastRemovedTodo = useCallback(async () => {
     dispatch(addTodo(await addItem(saveLastRemovedTodo)));
     dispatch(updateLastRemovedTodoToNull());
-    setInputSearchValue("");
+    resetSearchInput();
   });
 
   const onChageSearchBar = (event) => {
@@ -42,6 +42,17 @@ export const Features = () => {
 
   const onClickShowAll = () => {
     dispatch(filteredTodoListBySearch(""));
+  }
+
+  const onKeyDownSearch = (event) => {
+    if (event.key === "Enter") {
+        setInputSearchValue("");
+        dispatch(filteredTodoListBySearch(event.target.value));
+    }
+  };
+
+  const resetSearchInput = () => {
+    setInputSearchValue("");
   }
 
   return (
@@ -76,6 +87,7 @@ export const Features = () => {
       </button>
       <input placeholder="Search" className={styles.search_input}
       onChange={onChageSearchBar}
+      onKeyDown={onKeyDownSearch}
       value={inputSearchValue}/>
     </section>
   );

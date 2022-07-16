@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    errorCallbackFunction : () => {},
-    cleanSearchInput : () => {}
+    errorCallbackFunction : () => {}
 }
 export const callbackFunctionsSlice = createSlice({
   name: 'callbackFunctions',
