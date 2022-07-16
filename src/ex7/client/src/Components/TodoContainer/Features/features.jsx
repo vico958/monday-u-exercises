@@ -1,0 +1,82 @@
+import React from "react";
+import { useCallback, useState } from "react";
+import styles from "./features.module.css";
+import { deleteAllItems, addItem } from "../../Api/apiRequestsLib";
+import { removeAllTodos } from "../../../Slices/todoList/todoListSlice";
+import { addTodo, updateLastRemovedTodoToNull } from "../../../Slices/todoList/todoListSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { filteredTodoListBySearch, filteredTodoListByIsCompleted } from "../../../Slices/todoList/todoListSlice";
+
+export const Features = () => {
+  const dispatch = useDispatch();
+  const {saveLastRemovedTodo} = useSelector((state) => state.allReducers.todoList);
+  const [inputSearchValue, setInputSearchValue] = useState("");
+  
+  const onClickdeleteAllItems = useCallback(async () => {
+    await deleteAllItems();
+    dispatch(removeAllTodos());
+    dispatch(updateLastRemovedTodoToNull());
+    setInputSearchValue("");
+}, []);
+
+  const onClickRestoreLastRemovedTodo = useCallback(async () => {
+    dispatch(addTodo(await addItem(saveLastRemovedTodo)));
+    dispatch(updateLastRemovedTodoToNull());
+    setInputSearchValue("");
+  });
+
+  const onChageSearchBar = (event) => {
+    setInputSearchValue(event.target.value);
+    dispatch(filteredTodoListBySearch(event.target.value));
+  };
+
+  const onClickShowOnlyDoneTodo = () => {
+    const isCompleted = true;
+    dispatch(filteredTodoListByIsCompleted(isCompleted));
+  }
+
+  const onClickShowOnlyLeftTodo = () => {
+    const isCompleted = false;
+    dispatch(filteredTodoListByIsCompleted(isCompleted));
+  }
+
+  const onClickShowAll = () => {
+    dispatch(filteredTodoListBySearch(""));
+  }
+
+  return (
+    <section>
+      <button
+        className={styles.delete_all_items_button}
+        onClick={onClickdeleteAllItems}
+      >
+        Delete All
+      </button>
+      {saveLastRemovedTodo !== null && (
+      <button
+        className={styles.restore_last_deleted_todo_button}
+        onClick={onClickRestoreLastRemovedTodo}
+      >
+        Restore Last Deleted Todo
+      </button>)}
+      <button 
+      className={styles.show_only_done_todo_button}
+      onClick={onClickShowOnlyDoneTodo}>
+        Show Only Done
+      </button>
+      <button 
+      className={styles.show_only_left_todo_button}
+      onClick={onClickShowOnlyLeftTodo}>
+        Show Only left
+      </button>
+      <button 
+      className={styles.show_all_todo_button}
+      onClick={onClickShowAll}>
+        Show All
+      </button>
+      <input placeholder="Search" className={styles.search_input}
+      onChange={onChageSearchBar}
+      value={inputSearchValue}/>
+    </section>
+  );
+};
