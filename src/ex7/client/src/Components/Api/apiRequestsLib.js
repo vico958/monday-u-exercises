@@ -49,7 +49,6 @@ export async function editItem(taskId, newTask, errorCallBackFunction) {
     });
     return returnedItem.data;
   } catch (error) {
-    console.log(error);
     errorCallBackFunction(error);
   }
 }
