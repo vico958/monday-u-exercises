@@ -1,5 +1,5 @@
 import React from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import styles from "./features.module.css";
 import { deleteAllItems, addItem } from "../../Api/apiRequestsLib";
 import { removeAllTodos } from "../../../Slices/todoList/todoListSlice";
@@ -12,6 +12,38 @@ export const Features = () => {
   const {saveLastRemovedTodo} = useSelector((state) => state.allReducers.todoList);
   const [inputSearchValue, setInputSearchValue] = useState("");
   
+  useEffect(() => {
+
+    const keydownHandler = (e) => {
+        if(e.ctrlKey){
+            switch(e.key) {
+                case "x":
+                    onClickdeleteAllItems();
+                  break;
+                case "y":
+                    onClickRestoreLastRemovedTodo();
+                  break;
+                case "q":
+                    onClickShowAll();
+                    break;
+                case "c":
+                    onClickShowOnlyDoneTodo();
+                    break;
+                case "b":
+                    onClickShowOnlyLeftTodo();
+                    break;
+                default:
+              }
+        }
+    }
+
+    document.addEventListener("keydown", keydownHandler);
+
+    return () => {
+      document.removeEventListener("keydown", keydownHandler);
+    };
+  }, []);
+
   const onClickdeleteAllItems = useCallback(async () => {
     await deleteAllItems();
     dispatch(removeAllTodos());
@@ -20,9 +52,11 @@ export const Features = () => {
 }, []);
 
   const onClickRestoreLastRemovedTodo = useCallback(async () => {
-    dispatch(addTodo(await addItem(saveLastRemovedTodo)));
-    dispatch(updateLastRemovedTodoToNull());
-    resetSearchInput();
+    if(saveLastRemovedTodo !== null){
+        dispatch(addTodo(await addItem(saveLastRemovedTodo)));
+        dispatch(updateLastRemovedTodoToNull());
+        resetSearchInput();
+    }
   });
 
   const onChageSearchBar = (event) => {
